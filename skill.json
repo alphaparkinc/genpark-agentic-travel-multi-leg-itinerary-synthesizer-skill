@@ -1,0 +1,71 @@
+{
+  "name": "genpark-agentic-travel-multi-leg-itinerary-synthesizer-skill",
+  "version": "1.0.0",
+  "description": "Universal Agentic Travel & Multi-Leg Hospitality Itinerary Synthesizer (inspired by Meta Muse, Expedia, Booking). Translates natural language vacation and business travel goals into multi-leg flight segments, lodging selection, layover time buffers, baggage fee optimization, and consolidated reservation manifests.",
+  "tools": [
+    {
+      "name": "synthesize_travel_itinerary",
+      "description": "Multi-leg travel synthesis: plan flight segments, evaluate hotel bookings, calculate layover buffer risks, optimize baggage fees, and assemble unified booking manifests.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "synthesize_itinerary",
+              "evaluate_layover_risk",
+              "calculate_lodging_options",
+              "compile_booking_manifest"
+            ],
+            "description": "Travel action to execute."
+          },
+          "origin": {
+            "type": "string",
+            "description": "Origin airport code (e.g. SFO, PEK, LHR)."
+          },
+          "destination": {
+            "type": "string",
+            "description": "Destination airport code (e.g. HND, JFK, CDG)."
+          },
+          "departure_date": {
+            "type": "string",
+            "description": "Departure date (YYYY-MM-DD)."
+          },
+          "return_date": {
+            "type": "string",
+            "description": "Return date (YYYY-MM-DD)."
+          },
+          "budget_usd": {
+            "type": "number",
+            "description": "Total target travel budget in USD."
+          },
+          "travelers_count": {
+            "type": "integer",
+            "description": "Number of passengers."
+          },
+          "candidate_flights": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Candidate flight quotes."
+          },
+          "candidate_hotels": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Candidate hotel options."
+          },
+          "layover_minutes": {
+            "type": "integer",
+            "description": "Layover duration in minutes for risk evaluation."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
